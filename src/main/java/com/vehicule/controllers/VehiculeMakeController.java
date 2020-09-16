@@ -33,19 +33,19 @@ public class VehiculeMakeController {
 		return "redirect:/vehicule_make";
 	}
 	
-	@GetMapping(name = "vehicule_make/findById")
+	@GetMapping(value = "vehicule_make/findById")
 	@ResponseBody
 	public Optional<VehiculeMake> getVehiculeMakeById(Integer id) {
 		return vms.getVehiculeMakeById(id);
 	}
 	
-	@RequestMapping(name = "vehicule_make/update", method = {RequestMethod.PUT,RequestMethod.GET})
+	@RequestMapping(value = "vehicule_make/update", method = {RequestMethod.PUT,RequestMethod.GET})
 	public String update(VehiculeMake vm) {
 		vms.saveVehiculeMake(vm);
 		return "redirect:/vehicule_make";
 	}
 	
-	@RequestMapping(name = "vehicule_make/delete", method = {RequestMethod.DELETE,RequestMethod.GET})
+	@RequestMapping(value = "vehicule_make/delete", method = {RequestMethod.DELETE,RequestMethod.GET})
 	public String delete(Integer id) {
 		vms.deleteById(id);
 		return "redirect:/vehicule_make";
