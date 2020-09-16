@@ -27,7 +27,7 @@ public class VehiculeMakeController {
 		return "vehicule_make";
 	}
 	
-	@PostMapping(name = "vehicule_make/addvm")
+	@PostMapping(value = "vehicule_make/addvm")
 	public String save(VehiculeMake vm) {
 		vms.saveVehiculeMake(vm);
 		return "redirect:/vehicule_make";
