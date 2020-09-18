@@ -49,18 +49,18 @@ public class InvoiceController {
 	@PostMapping(value = "invoice/add")
 	public String save(Invoice invoice) {
 		invoiceService.saveInvoice(invoice);
-		return "redirec:/invoice";
+		return "redirect:/invoice";
 	}
 	
 	@RequestMapping(value = "invoice/update", method = {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Invoice invoice) {
 		invoiceService.saveInvoice(invoice);
-		return "redirec:/invoice";
+		return "redirect:/invoice";
 	}
 	
 	@RequestMapping(value = "invoice/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		invoiceService.deleteInvoice(id);
-		return "redirec:/invoice";
+		return "redirect:/invoice";
 	}
 }

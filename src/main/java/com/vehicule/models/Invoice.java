@@ -41,4 +41,48 @@ public class Invoice {
 	@JoinColumn(name = "clientid", insertable = false, updatable = false)
 	private Client client;
 	private Integer clientid;
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+	public Date getDateinvoice() {
+		return dateinvoice;
+	}
+	public void setDateinvoice(Date dateinvoice) {
+		this.dateinvoice = dateinvoice;
+	}
+	public InvoiceStatus getInvoiceStatus() {
+		return invoiceStatus;
+	}
+	public void setInvoiceStatus(InvoiceStatus invoiceStatus) {
+		this.invoiceStatus = invoiceStatus;
+	}
+	public Integer getInvoicestatusid() {
+		return invoicestatusid;
+	}
+	public void setInvoicestatusid(Integer invoicestatusid) {
+		this.invoicestatusid = invoicestatusid;
+	}
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public Integer getClientid() {
+		return clientid;
+	}
+	public void setClientid(Integer clientid) {
+		this.clientid = clientid;
+	}
+	
+	
 }
