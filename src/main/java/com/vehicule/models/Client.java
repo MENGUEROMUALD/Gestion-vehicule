@@ -29,6 +29,7 @@ public class Client {
 	private String website;
 	private String email;
 	private String details;
+	private String city;
 	
 	
 	
@@ -36,7 +37,7 @@ public class Client {
 		super();
 	}
 	public Client(String name, String address, String phone, String mobile, String website, String email,
-			String details, Contry contry, Integer contryid, State state, Integer stateid) {
+			String details, Contry contry, Integer contryid, State state, Integer stateid,String city) {
 		super();
 		this.name = name;
 		this.address = address;
@@ -49,10 +50,17 @@ public class Client {
 		this.contryid = contryid;
 		this.state = state;
 		this.stateid = stateid;
+		this.city = city;
 	}
 	
 	
 	
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
 	public Integer getId() {
 		return id;
 	}

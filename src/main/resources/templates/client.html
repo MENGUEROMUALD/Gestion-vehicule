@@ -421,13 +421,15 @@
                  </thead>
                  <tbody class="">
                   <tr th:each="vm:${list_client}">
-                    <td th:text="${vm.id}"></td>
-                    <td th:text="${vm.description}"></td>
-                    <td th:text="${vm.detail}"></td>
+                    <td th:text="${vm.name}"></td>
+                    <td th:text="${vm.website}"></td>
+                    <td th:text="${vm.email}"></td>
+                    <td th:text="${vm.city}"></td>
+                    <td th:text="${vm.phone}"></td>
                     <td>
                       <div class="btn-group">
-                        <a class="btn btn-info" th:href="@{/client/findById/(id=${vm.id})}" id="edit_et"><i class="icon_pencil-edit"></i></a>
-                        <a class="btn btn-danger" th:href="@{/client/delete/(id=${vm.id})}" id="delete_et"><i class="icon_trash"></i></a>
+                        <a class="btn btn-info" th:href="@{/client/findById/(id=${vm.id})}" id="edit_cl"><i class="icon_pencil-edit"></i></a>
+                        <a class="btn btn-danger" th:href="@{/client/delete/(id=${vm.id})}" id="delete_cl"><i class="icon_trash"></i></a>
                       </div>
                     </td>
                   </tr>
@@ -458,103 +460,207 @@
   
       <!-- Modal started addVehiculeMake -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nouveau client</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form th:action="@{/client/add}" method="post">
-			<table width="100%">
-				<tr>
-					<td width="50%">
-						<div class="form-group row">
-							<label for="txtNom" class="col-sm-4 col-form-label">Nom :</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control"  id="txtNom" name="name" placeholder="entrer votre nom"/>
+     <form th:action="@{/client/add}" method="post">
+          <div class="modal-dialog modal-lg" role="document" style="width:70%">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Nouveau client</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+				<table width="100%">
+					<tr>
+						<td width="50%">
+							<div class="form-group row">
+								<label for="txtNom" class="col-sm-4 col-form-label">Nom :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"  id="txtNom" name="name" placeholder="entrer votre nom"/>
+								</div>
 							</div>
-						</div>
-						<div class="form-group row">
-							<label for="txtDetail" class="col-sm-4 col-form-label">Détail :</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control"  id="txtDetail" name="details" placeholder="entrer le détail"/>
+							<div class="form-group row">
+								<label for="txtDetail" class="col-sm-4 col-form-label">Détail :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"  id="txtDetail" name="details" placeholder="entrer le détail"/>
+								</div>
 							</div>
-						</div>
-						<div class="form-group row">
-							<label for="txtSite" class="col-sm-4 col-form-label">Site web :</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control"  id="txtSite" name="website" placeholder="entrer votre site web"/>
+							<div class="form-group row">
+								<label for="txtSite" class="col-sm-4 col-form-label">Site web :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"  id="txtSite" name="website" placeholder="entrer votre site web"/>
+								</div>
 							</div>
-						</div>
-						<div class="form-group row">
-							<label for="txtAdress" class="col-sm-4 col-form-label">Adresse :</label>
-							<div class="col-sm-6">
-								<textarea rows="2" id="txtAdress" name="address" class="form-control" cols="" placeholder="Entrer votre adresse"></textarea>
+							<div class="form-group row">
+								<label for="txtAdress" class="col-sm-4 col-form-label">Adresse :</label>
+								<div class="col-sm-6">
+									<textarea rows="2" id="txtAdress" name="address" class="form-control" cols="" placeholder="Entrer votre adresse"></textarea>
+								</div>
 							</div>
-						</div>
-					</td>
-					<td width="50%">
-						<div class="form-group row">
-							<label for="txtState" class="col-sm-4 col-form-label">Pays/Province :</label>
-							<div class="col-sm-6">
-								<select class="form-control" id="txtState" name="stateid">
-									<option>--------------- SELECT ------------------</option>
-									<option th:each="state:${list_state}" th:value="${state.id}" th:text="${state.name}"></option>
-								</select>
+						</td>
+						<td width="50%">
+							<div class="form-group row">
+								<label for="txtState" class="col-sm-4 col-form-label">Etat/Province :</label>
+								<div class="col-sm-6">
+									<select class="form-control" id="txtState" name="stateid">
+										<option>--------------- SELECT ------------------</option>
+										<option th:each="state:${list_state}" th:value="${state.id}" th:text="${state.name}"></option>
+									</select>
+								</div>
 							</div>
-						</div>
-					</td>				
-				</tr>
-			</table>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-
-      </div>
-    </div>
-  </div>
+							<div class="form-group row">
+								<label for="txtContry" class="col-sm-4 col-form-label">Pays :</label>
+								<div class="col-sm-6">
+									<select class="form-control" id="txtContry" name="contryid">
+										<option>--------------- SELECT ------------------</option>
+										<option th:each="contry:${list_contry}" th:value="${contry.id}" th:text="${contry.description}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="txtCity" class="col-sm-4 col-form-label">Ville :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="txtCity" name="city" placeholder="Entrer une ville" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="txtPhone" class="col-sm-4 col-form-label">Téléphone :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="txtPhone" name="phone" placeholder="téléphone" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="txtMobile" class="col-sm-4 col-form-label">Fax :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="txtMobile" name="mobile" placeholder="numéro fixe" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="txtEmail" class="col-sm-4 col-form-label">Email :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="txtEmail" name="email" placeholder="adresse email" />
+								</div>
+							</div>
+						</td>				
+					</tr>
+				</table>
+				<div class="float-right">
+					<button class="btn btn-success" type="submit">Enregistrer</button>
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		
+		      </div>
+		    </div>
+		  </div>
+     </form>
 </div>
   <!-- Modal end addVehiculeMake-->
   
   <!-- Modal started EditVehiculeMake-->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modifier le client</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form th:action="@{/client/update}" method="put">
-          <div class="form-group">
-            <label for="id" class="col-form-label">Id :</label>
-            <input type="text" readonly class="form-control" id="id" name="id">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Description :</label>
-            <input type="text" class="form-control" id="description" name="description">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Détails :</label>
-            <textarea rows="" cols="" name="detail" id="detail" class="form-control"></textarea>
-          </div>
-          <div class="form-group">
-   	        <button type="submit" class="btn btn-info">Modifier</button>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-
-      </div>
-    </div>
-  </div>
+     <form th:action="@{/client/update}" method="put">
+          <div class="modal-dialog modal-lg" role="document" style="width:70%">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Modifer un client</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+				<table width="100%">
+					<tr>
+						<td width="50%">
+							<div class="form-group row">
+								<label for="id" class="col-sm-4 col-form-label">Id :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"  id="id" name="id" readonly/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="Nom" class="col-sm-4 col-form-label">Nom :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"  id="Nom" name="name" placeholder="entrer votre nom"/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="Detail" class="col-sm-4 col-form-label">Détail :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"  id="Detail" name="details" placeholder="entrer le détail"/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="Site" class="col-sm-4 col-form-label">Site web :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control"  id="Site" name="website" placeholder="entrer votre site web"/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="Adress" class="col-sm-4 col-form-label">Adresse :</label>
+								<div class="col-sm-6">
+									<textarea rows="2" id="Adress" name="address" class="form-control" cols="" placeholder="Entrer votre adresse"></textarea>
+								</div>
+							</div>
+						</td>
+						<td width="50%">
+							<div class="form-group row">
+								<label for="State" class="col-sm-4 col-form-label">Etat/Province :</label>
+								<div class="col-sm-6">
+									<select class="form-control" id="State" name="stateid">
+										<option>--------------- SELECT ------------------</option>
+										<option th:each="state:${list_state}" th:value="${state.id}" th:text="${state.name}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="Contry" class="col-sm-4 col-form-label">Pays :</label>
+								<div class="col-sm-6">
+									<select class="form-control" id="Contry" name="contryid">
+										<option>--------------- SELECT ------------------</option>
+										<option th:each="contry:${list_contry}" th:value="${contry.id}" th:text="${contry.description}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="City" class="col-sm-4 col-form-label">Ville :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="City" name="city" placeholder="Entrer une ville" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="Phone" class="col-sm-4 col-form-label">Téléphone :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="Phone" name="phone" placeholder="téléphone" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="Mobile" class="col-sm-4 col-form-label">Fax :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="Mobile" name="mobile" placeholder="numéro fixe" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="Email" class="col-sm-4 col-form-label">Email :</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="Email" name="email" placeholder="adresse email" />
+								</div>
+							</div>
+						</td>				
+					</tr>
+				</table>
+				<div class="float-right">
+					<button class="btn btn-info" type="submit">Modifier</button>
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		
+		      </div>
+		    </div>
+		  </div>
+     </form>
 </div>
   <!-- Modal end EditVehiculeMake-->
   
