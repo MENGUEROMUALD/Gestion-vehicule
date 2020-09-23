@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Gestion des suppliers</title>
+  <title>Fournisseur</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +49,7 @@
       </div>
 
       <!--logo start-->
-      <a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
+      <a th:href="@{/}" class="logo">Gestion <span class="lite">Véhicule</span></a>
       <!--logo end-->
 
       <div class="nav search-row" id="top_menu">
@@ -405,16 +405,50 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
+            <h3 class="page-header"><i class="fa fa fa-bars"></i> Tableau de bord</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-              <li><i class="fa fa-bars"></i>Pages</li>
-              <li><i class="fa fa-square-o"></i>Pages</li>
+              <li><i class="fa fa-home"></i><a th:href="@{/}">Accueil</a></li>
+              <li><i class="fa fa-bars"></i>Fournisseur</li>
             </ol>
           </div>
         </div>
-        <!-- page start-->
-        <h1>Liste des suppliers</h1>
+                <!-- page start-->
+        
+         <div class="row">
+          <div class="col-lg-12">
+          <div class="" ><button type="button" class="btn btn-primary btn-sm" 
+            		data-toggle="modal" data-target="#modal" data-whatever="@mdo"><i class="icon_plus_alt2"></i></button></div>
+            <section class="panel">
+            <table class="table table-striped table-advance table-hover">
+                <thead class="text-center">
+                  <tr>
+                    <th><i class="icon_profile"></i> Nom</th>
+                    <th><i class="icon_calendar"></i> Site web</th>
+                    <th><i class="icon_mail_alt"></i> Email</th>
+                    <th><i class="icon_mail_alt"></i> Ville</th>
+                    <th><i class="icon_mail_alt"></i> N° téléphone </th>
+                    <th><i class="icon_cogs"></i> Action</th>
+                  </tr>
+                 </thead>
+                 <tbody class="">
+                  <tr th:each="vm:${list_supplier}">
+                    <td th:text="${vm.name}"></td>
+                    <td th:text="${vm.website}"></td>
+                    <td th:text="${vm.email}"></td>
+                    <td th:text="${vm.city}"></td>
+                    <td th:text="${vm.phone}"></td>
+                    <td>
+                      <div class="btn-group">
+                        <a class="btn btn-info" th:href="@{/supplier/findById/(id=${vm.id})}" id="edit_supp"><i class="icon_pencil-edit"></i></a>
+                        <a class="btn btn-danger" th:href="@{/supplier/delete/(id=${vm.id})}" id="delete_supp"><i class="icon_trash"></i></a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+          </div>
+        </div>
         <!-- page end-->
       </section>
     </section>
@@ -432,6 +466,231 @@
     </div>
   </section>
   <!-- container section end -->
+  
+      <!-- Modal started addVehiculeMake -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="width: 70%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau fournisseur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/supplier/add}" method="post">
+        	<table width="100%">
+        		<tr>
+        			<td width="50%">
+        				<div class="form-group row">
+        					<label for="txtName" class="col-sm-4 col-form-label">Nom :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="txtName" name="name" placeholder="entrer un nom" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtDetail" class="col-sm-4 col-form-label">Détail :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="txtDetail" name="details" placeholder="entrer un détail" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtSite" class="col-sm-4 col-form-label">Site web :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="txtSite" name="website" placeholder="entrer votre site web" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtAdresse" class="col-sm-4 col-form-label">Adresse :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="txtAdresse" name="address" placeholder="entrer une adresse" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtEtat" class="col-sm-4 col-form-label">Etat/Province :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="txtEtat" name="stateid">
+        							<option>----------- SELECT ----------</option>
+        							<option th:each="state:${list_state}" th:value="${state.id}" th:text="${state.name}"></option>
+        						</select>
+        					</div>
+        				</div>
+        			</td>
+        			<td width="50%">
+        				<div class="form-group row">
+        					<label for="txtContry" class="col-sm-4 col-form-label">Pays :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="txtContry" name="contryid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="con:${list_contry}" th:value="${con.id}" th:text="${con.description}"></option>
+        						</select>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtCity" class="col-sm-4 col-form-label">Ville :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="txtCity" name="city" placeholder="entrer une ville" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtPhone" class="col-sm-4 col-form-label">Téléphone :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="txtPhone" name="phone" placeholder="entrer un numero de téléphone" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtMobile" class="col-sm-4 col-form-label">Mobile :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="txtMobile" name="mobile" placeholder="entrer un numero fixe" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtEmail" class="col-sm-4 col-form-label">Email :</label>
+        					<div class="col-sm-6">
+        						<input type="email" class="form-control" id="txtEmail" name="email" placeholder="entrer une adresse email" />
+        					</div>
+        				</div>
+        				<div class="col-sm-6 float-right">
+       						<button class="btn btn-success" type="submit">Enregistrer</button>
+       					</div>
+        			</td>
+        		</tr>
+        	</table>
+		</form>
+    </div>
+  </div>
+</div>
+</div>
+  <!-- Modal end addVehiculeMake-->
+  
+  <!-- Modal started EditVehiculeMake-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modifier le fournisseur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/supplier/update}" method="put">
+          <table width="100%">
+        		<tr>
+        			<td width="50%">
+        				<div class="form-group row">
+        					<label for="Id" class="col-sm-4 col-form-label">Id :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="Id" name="id" readonly />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Name" class="col-sm-4 col-form-label">Nom :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="Name" name="name" placeholder="entrer un nom" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Detail" class="col-sm-4 col-form-label">Détail :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="Detail" name="details" placeholder="entrer un détail" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Site" class="col-sm-4 col-form-label">Site web :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="Site" name="website" placeholder="entrer votre site web" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Adresse" class="col-sm-4 col-form-label">Adresse :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="Adresse" name="address" placeholder="entrer une adresse" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Etat" class="col-sm-4 col-form-label">Etat/Province :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="Etat" name="stateid">
+        							<option>----------- SELECT ----------</option>
+        							<option th:each="state:${list_state}" th:value="${state.id}" th:text="${state.name}"></option>
+        						</select>
+        					</div>
+        				</div>
+        			</td>
+        			<td width="50%">
+        				<div class="form-group row">
+        					<label for="Contry" class="col-sm-4 col-form-label">Pays :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="Contry" name="contryid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="con:${list_contry}" th:value="${con.id}" th:text="${con.description}"></option>
+        						</select>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="City" class="col-sm-4 col-form-label">Ville :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="City" name="city" placeholder="entrer une ville" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Phone" class="col-sm-4 col-form-label">Téléphone :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="Phone" name="phone" placeholder="entrer un numero de téléphone" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Mobile" class="col-sm-4 col-form-label">Mobile :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="Mobile" name="mobile" placeholder="entrer un numero fixe" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Email" class="col-sm-4 col-form-label">Email :</label>
+        					<div class="col-sm-6">
+        						<input type="email" class="form-control" id="Email" name="email" placeholder="entrer une adresse email" />
+        					</div>
+        				</div>
+        				<div class="col-sm-6 float-right">
+       						<button class="btn btn-info" type="submit">Modifier</button>
+       					</div>
+        			</td>
+        		</tr>
+        	</table>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Modal end EditVehiculeMake-->
+  
+    <!-- Modal started delete vehicule make -->
+ <div class="modal" id="deleteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmer la suppression</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Etes-vous sûre de vouloir supprimer cette valeur ?</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-info" href="" id="confirmDelete">Oui</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+  	
+  <!-- Modal end delete vehicule make -->
+  
   <!-- javascripts -->
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -440,7 +699,7 @@
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
   <!--custome script for all page-->
   <script src="js/scripts.js"></script>
-
+  <script src="js/supplier.js"></script>
 
 </body>
 
