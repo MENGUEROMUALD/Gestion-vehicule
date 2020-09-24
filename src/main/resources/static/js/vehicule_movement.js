@@ -11,13 +11,13 @@ $(document).ready(function(){
 		$.get(href, function(vm,status){
 			$('#Id').val(vm.id);
 			$('#Vehicule').val(vm.vehiculeid);
-			var startDate = vm.startDate.substr(0,10);
-			var endDate = vm.endDate.substr(0,10);
-			$('#startDate').val(startDate);
-			$('#endDate').val(endDate);
+			var date1 = vm.date1.substr(0,10);
+			var date2 = vm.date2.substr(0,10);
+			$('#Date1').val(date1);
+			$('#Date2').val(date2);
 			$('#Remarks').val(vm.remarks);
-			$('#Supplier').val(vm.supplierid);
-			$('#Price').val(vm.price);
+			$('#Location1').val(vm.location1);
+			$('#Location2').val(vm.location2);
 		});
 		
 		$('#editModal').modal();		
