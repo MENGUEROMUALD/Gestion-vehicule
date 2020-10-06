@@ -458,33 +458,133 @@
         		<tr>
         			<td width="50%">
         				<div class="form-group row">
-        					<label for="txtfirstName" class="col-sm-4 col-form-label">Type véhicule :</label>
+        					<label for="txtvehiculeType" class="col-sm-4 col-form-label">Type véhicule :</label>
         					<div class="col-sm-6">
-        						<input type="text" class="form-control" id="txtName" name="firstname" placeholder="entrer un nom" />
+        						<select class="form-control" id="txtvehiculeType" name="vehiculetypeid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="tv:${list_vtype}" th:value="${tv.id}" th:text="${tv.description}">
+        							
+        							</option>
+        						</select>
         					</div>
         				</div>
         				<div class="form-group row">
-        					<label for="txtlastName" class="col-sm-4 col-form-label">Prénom :</label>
+        					<label for="txtName" class="col-sm-4 col-form-label">Nom Véhicule :</label>
         					<div class="col-sm-6">
-        						<input type="text" class="form-control" id="txtName" name="lastname" placeholder="entrer un prénom" />
+        						<input type="text" class="form-control" id="txtName" name="name" placeholder="nom véhicule" />
         					</div>
         				</div>
         				<div class="form-group row">
-        					<label for="txtEmail" class="col-sm-4 col-form-label">Email :</label>
+        					<label for="txtvehiculeNumber" class="col-sm-4 col-form-label">Numéro véhicule :</label>
         					<div class="col-sm-6">
-        						<input type="email" class="form-control" id="txtEmail" name="email" placeholder="entrer un email" />
+        						<input type="text" class="form-control" id="txtvehiculeNumber" name="vehiculeNumber" placeholder="numero véhicule" />
         					</div>
         				</div>
         				<div class="form-group row">
-        					<label for="txtPhone" class="col-sm-4 col-form-label">Téléphone :</label>
+        					<label for="txtregistrationDate" class="col-sm-4 col-form-label">Date d'enregistrement :</label>
         					<div class="col-sm-6">
-        						<input type="text" class="form-control" id="txtPhone" name="phone" placeholder="n° téléphone" />
+        						<input type="date" class="form-control" id="txtregistrationDate" name="registrationDate" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtdescription" class="col-sm-4 col-form-label">Description :</label>
+        					<div class="col-sm-6">
+        						<textarea rows="2" class="form-control" id="txtdescription" name="description" placeholder="description du véhicule">
+        						</textarea>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtacquisitionDate" class="col-sm-4 col-form-label">Date d'acquisition :</label>
+        					<div class="col-sm-6">
+        						<input type="date" class="form-control" id="txtacquisitionDate" name="acquisitionDate" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtvehiculeMake" class="col-sm-4 col-form-label">Marque véhicule :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="txtvehiculeMake" name="vehiculemakeid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="vm:${list_make}" th:value="${vm.id}" th:text="${vm.description}">
+        							
+        							</option>
+        						</select>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtvehiculeModel" class="col-sm-4 col-form-label">Model véhicule :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="txtvehiculeModel" name="vehiculemodelid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="vm:${list_model}" th:value="${vm.id}" th:text="${vm.description}">
+        							
+        							</option>
+        						</select>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtLocation" class="col-sm-4 col-form-label">Lieux actuel :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="txtLocation" name="locationid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="loc:${list_location}" th:value="${loc.id}" th:text="${loc.description}">
+        							
+        							</option>
+        						</select>
+        					</div>
+        				</div>
+        			</td>
+        			<td width="50%">
+        				<div class="form-group row">
+        					<label for="txtPower" class="col-sm-4 col-form-label">Power :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="txtPower" name="power" placeholder="power" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtFuel" class="col-sm-4 col-form-label">Capacité carburant :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="txtFuel" name="fuelCapacity" placeholder="capacité carburant" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtPoidsNet" class="col-sm-4 col-form-label">Poids net :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="txtPoidsNet" name="netWeight" placeholder="poids net" />
         					</div>
         				</div>
         				<div class="form-group row">
         					<label for="txtRemarks" class="col-sm-4 col-form-label">Remarques :</label>
         					<div class="col-sm-6">
-        						<input type="text" class="form-control" id="txtRemarks" name="remarks" placeholder="entrer une remarque" />
+        						<textarea rows="2" class="form-control" id="txtRemarks" name="remarks" placeholder="remarque">
+        						</textarea>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtEmploye" class="col-sm-4 col-form-label">En charge :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="txtEmploye" name="employeid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="loc:${list_employe}" th:value="${loc.id}" th:text="${loc.username}">
+        							
+        							</option>
+        						</select>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtStatus" class="col-sm-4 col-form-label">Statut actuel :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="txtStatus" name="vehiculestatusid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="loc:${list_vstat}" th:value="${loc.id}" th:text="${loc.description}">
+        							
+        							</option>
+        						</select>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtPhoto" class="col-sm-4 col-form-label">Selectionnez image :</label>
+        					<div class="col-sm-6">
+        						<input type="file" class="form-control-file" id="txtPhoto" name="photo" placeholder="selectionnez une photo" />
         					</div>
         				</div>
         				<div class="col-sm-6 float-right">
@@ -499,6 +599,194 @@
 </div>
 </div>
   <!-- Modal end addVehiculeMake-->
+  
+  
+      <!-- Modal started addVehiculeMake -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" style="width: 70%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modifier véhicule</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/vehicule/update}" method="put">
+        	<table width="100%">
+        		<tr>
+        			<td width="50%">
+        				<div class="form-group row">
+        					<label for="Id" class="col-sm-4 col-form-label">Id :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="Id" name="id" readonly />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="vehiculeType" class="col-sm-4 col-form-label">Type véhicule :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="vehiculeType" name="vehiculetypeid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="tv:${list_vtype}" th:value="${tv.id}" th:text="${tv.description}">
+        							
+        							</option>
+        						</select>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Name" class="col-sm-4 col-form-label">Nom Véhicule :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="Name" name="name" placeholder="nom véhicule" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="vehiculeNumber" class="col-sm-4 col-form-label">Numéro véhicule :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="vehiculeNumber" name="vehiculeNumber" placeholder="numero véhicule" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="registrationDate" class="col-sm-4 col-form-label">Date d'enregistrement :</label>
+        					<div class="col-sm-6">
+        						<input type="date" class="form-control" id="registrationDate" name="registrationDate" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="description" class="col-sm-4 col-form-label">Description :</label>
+        					<div class="col-sm-6">
+        						<textarea rows="2" class="form-control" id="description" name="description" placeholder="description du véhicule">
+        						</textarea>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="acquisitionDate" class="col-sm-4 col-form-label">Date d'acquisition :</label>
+        					<div class="col-sm-6">
+        						<input type="date" class="form-control" id="acquisitionDate" name="acquisitionDate" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="vehiculeMake" class="col-sm-4 col-form-label">Marque véhicule :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="vehiculeMake" name="vehiculemakeid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="vm:${list_make}" th:value="${vm.id}" th:text="${vm.description}">
+        							
+        							</option>
+        						</select>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="vehiculeModel" class="col-sm-4 col-form-label">Model véhicule :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="vehiculeModel" name="vehiculemodelid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="vm:${list_model}" th:value="${vm.id}" th:text="${vm.description}">
+        							
+        							</option>
+        						</select>
+        					</div>
+        				</div>
+        			</td>
+        			<td width="50%">
+        				<div class="form-group row">
+        					<label for="Location" class="col-sm-4 col-form-label">Lieux actuel :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="Location" name="locationid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="loc:${list_location}" th:value="${loc.id}" th:text="${loc.description}">
+        							
+        							</option>
+        						</select>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Power" class="col-sm-4 col-form-label">Power :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="Power" name="power" placeholder="power" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Fuel" class="col-sm-4 col-form-label">Capacité carburant :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="Fuel" name="fuelCapacity" placeholder="capacité carburant" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="PoidsNet" class="col-sm-4 col-form-label">Poids net :</label>
+        					<div class="col-sm-6">
+        						<input type="text" class="form-control" id="PoidsNet" name="netWeight" placeholder="poids net" />
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Remarks" class="col-sm-4 col-form-label">Remarques :</label>
+        					<div class="col-sm-6">
+        						<textarea rows="2" class="form-control" id="Remarks" name="remarks" placeholder="remarque">
+        						</textarea>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Employe" class="col-sm-4 col-form-label">En charge :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="Employe" name="employeid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="loc:${list_employe}" th:value="${loc.id}" th:text="${loc.username}">
+        							
+        							</option>
+        						</select>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Status" class="col-sm-4 col-form-label">Statut actuel :</label>
+        					<div class="col-sm-6">
+        						<select class="form-control" id="Status" name="vehiculestatusid">
+        							<option>---------- SELECT ----------</option>
+        							<option th:each="loc:${list_vstat}" th:value="${loc.id}" th:text="${loc.description}">
+        							
+        							</option>
+        						</select>
+        					</div>
+        				</div>
+        				<div class="form-group row">
+        					<label for="Photo" class="col-sm-4 col-form-label">Selectionnez image :</label>
+        					<div class="col-sm-6">
+        						<input type="file" class="form-control-file" id="Photo" name="photo" placeholder="selectionnez une photo" />
+        					</div>
+        				</div>
+        				<div class="col-sm-6 float-right">
+       						<button class="btn btn-info" type="submit">Modifier</button>
+       					</div>
+        			</td>
+        		</tr>
+        	</table>
+		</form>
+    </div>
+  </div>
+</div>
+</div>
+  <!-- Modal end addVehiculeMake-->
+  
+     <!-- Modal started delete vehicule make -->
+ <div class="modal" id="deleteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmer la suppression</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Etes-vous sûre de vouloir supprimer cette valeur ?</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-info" href="" id="confirmDelete">Oui</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+  	
+  <!-- Modal end delete vehicule make -->
   
   <!-- javascripts -->
   <script src="js/jquery.js"></script>
