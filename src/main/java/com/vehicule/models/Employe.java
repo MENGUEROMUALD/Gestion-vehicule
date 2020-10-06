@@ -49,6 +49,9 @@ public class Employe extends Person {
 		this.jobTitle = jobTitle;
 		this.jobtitleid = jobtitleid;
 	}
+	
+	
+	
 	public Integer getId() {
 		return id;
 	}
