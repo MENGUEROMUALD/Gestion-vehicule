@@ -50,7 +50,9 @@ public class Employe extends Person {
 		this.jobtitleid = jobtitleid;
 	}
 	
-	
+	public Employe() {
+		super();
+	}
 	
 	public Integer getId() {
 		return id;

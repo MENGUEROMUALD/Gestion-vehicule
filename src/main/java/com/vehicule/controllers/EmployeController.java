@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vehicule.models.Employe;
 import com.vehicule.models.Vehicule;
+import com.vehicule.services.ContryService;
 import com.vehicule.services.EmployeService;
 import com.vehicule.services.EmployeTypeService;
 import com.vehicule.services.JobTitleService;
+import com.vehicule.services.StateService;
 
 @Controller
 public class EmployeController {
@@ -23,12 +25,16 @@ public class EmployeController {
 	@Autowired EmployeTypeService ets;
 	@Autowired JobTitleService jts;
 	@Autowired EmployeService es;
+	@Autowired ContryService cs;
+	@Autowired StateService ss;
 	
 	@GetMapping("/employe")
 	public String getEmploye(Model model) {
 		model.addAttribute("employe", es.listEmploye());
 		model.addAttribute("employeType", ets.listEmployeType());
 		model.addAttribute("jobTitle", jts.listJobTitle());
+		model.addAttribute("list_contry", cs.getContries());
+		model.addAttribute("list_state", ss.getStates());
 		return "employe";
 	}
 	
